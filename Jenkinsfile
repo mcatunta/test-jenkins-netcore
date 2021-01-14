@@ -2,8 +2,8 @@ pipeline {
     agent {
         docker {
             label 'windows'
-            image 'mcr.microsoft.com/dotnet/core/sdk:3.1'
-            args '-p 3000:80' 
+            image 'mcr.microsoft.com/dotnet/core/sdk:3.1'            
+            args '-p 3000:80 --mount src=${env.WORKSPACE}/test-jenkins-netcore_master,dst=/bld,type=bind'
         }
     }
     environment {
