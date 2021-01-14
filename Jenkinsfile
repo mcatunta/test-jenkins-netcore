@@ -1,6 +1,7 @@
 pipeline {
     agent {
         docker {
+            label 'windows'
             image 'mcr.microsoft.com/dotnet/core/sdk:3.1'
             args '-p 3000:80' 
         }
