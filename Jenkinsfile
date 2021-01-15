@@ -1,23 +1,18 @@
 pipeline {
     agent {
         docker {
-            image 'mcr.microsoft.com/dotnet/aspnet:3.1'
-            args '-p 2002:80'
+            image 'node:6-alpine'
+            args '-p 3000:3000 -p 5000:5000'
         }
     }
     environment {
         CI = 'true'
     }
-    stages {
-        stage('Restore Packages') {
-            steps {
-                bat "dotnet restore TodoApi.csproj"
-            }
-        }        
+    stages {        
         stage('Build') {
             steps {
-                bat "dotnet build TodoApi.csproj --configuration Release"
+                sh 'npm install'
             }
-        }        
+        }
     }
 }
